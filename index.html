@@ -132,58 +132,87 @@
             height: 100%;
         }
 
-        /* --- Tools and Shorts Layout --- */
+        /* --- Tools & Shorts 정렬 수정 --- */
         .tools-shorts-container {
-            display: grid;
-            grid-template-columns: 2fr 3fr; /* 도구 영역과 동영상 영역의 너비 비율 설정 */
-            gap: 40px; /* 두 영역 사이의 간격 */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;               /* 도구와 영상 사이 간격 */
+            margin-top: 40px;
             margin-bottom: 50px;
         }
 
         .tools-section {
-            padding-right: 20px; /* 도구 목록과 동영상 사이 여백 */
+            width: 380px;            /* 3개씩 넣기 위해 가로 폭을 충분히 확보 */
         }
 
         .tools-section h2 {
             margin-bottom: 20px;
+            text-align: left;
         }
 
-        .tools-section ul {
+        .tools-list {
             list-style: none;
             padding: 0;
-            margin: 0;
-            display: flex;       /* 가로로 나열 */
-            flex-wrap: wrap;    /* 공간 부족 시 다음 줄로 */
-            gap: 10px 25px;     /* 상하 10px, 좌우 25px 간격 */
+            display: grid;           /* 3열 배치를 위한 Grid 적용 */
+            grid-template-columns: repeat(3, 1fr); /* 정확히 3열로 나눔 */
+            gap: 10px;               /* 박스들 사이의 간격 */
         }
 
-        .tools-section li {
-            /* 깔끔한 고딕체(무료 폰트) 적용 */
+        .tools-list li {
+            /* 상업적 무료 고딕체 적용 */
             font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            color: #444;
-            background: #f0f0f0; /* 배경을 넣어 탭(Tag) 느낌 강조 */
-            padding: 5px 12px;
-            border-radius: 5px;
-            white-space: nowrap; /* 툴 이름이 중간에 끊기지 않게 함 */
-        }
-
-        .shorts-grid-shifted {
+            background: #f0f0f0;
+            padding: 10px 5px;
+            border-radius: 6px;
+            text-align: center;
             display: flex;
-            flex-direction: column; /* 세로로 배치 */
-            align-items: center; /* 가운데 정렬 */
-            gap: 20px; /* 영상 간격 */
+            align-items: center;
+            justify-content: center;
+            word-break: keep-all;    /* 단어가 중간에 잘리지 않게 함 */
+            min-height: 45px;       /* 모든 박스의 높이를 통일 */
         }
 
-        /* 좁은 화면 (태블릿, 모바일) 대응 */
+        /* 오른쪽 영상 영역 */
+        .shorts-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .shorts-grid {
+            display: flex;          /* 영상들을 가로로 나열 */
+            gap: 20px;              /* 영상 사이 간격 */
+        }
+
+        .short-item {
+            width: 220px;           /* 2번 사진 정도의 적당한 크기 */
+            aspect-ratio: 9 / 16;
+            background: #000;
+            border: 2px solid var(--ink-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        .short-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 모바일 대응 */
         @media (max-width: 900px) {
             .tools-shorts-container {
-                grid-template-columns: 1fr; /* 세로로 한 줄씩 배치 */
-                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+            .shorts-grid {
+                justify-content: center;
             }
         }
-
         /* --- Image Gallery (Other Tabs) --- */
         .gallery-grid {
             display: grid;
@@ -350,7 +379,7 @@
             </div>
 
         <div class="tools-shorts-container">
-                <div class="tools-section">
+            <div class="tools-section">
                 <h2>Tools</h2>
                 <ul class="tools-list">
                     <li>Maya</li>
@@ -367,8 +396,9 @@
                 </ul>
             </div>
 
-                <div class="shorts-grid-shifted">
-                    <h2>Short Clips</h2>
+            <div class="shorts-section">
+                <h2>Short Clips</h2>
+                <div class="shorts-grid">
                     <div class="short-item">
                         <video src="Char_Flash.mp4" autoplay loop muted playsinline></video>
                     </div>
