@@ -204,43 +204,61 @@
         }
 
         /* 모바일 대응 */
-        @media (max-width: 768px) {
-            /* 1. 전체 컨테이너를 세로 정렬로 변경 */
-            .tools-shorts-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 40px;
-            }
+        /* --- 모바일 통합 반응형 레이아웃 (768px 이하) --- */
+@media (max-width: 768px) {
+    /* 1. 공통 갤러리 그리드 (Drawing, Figure 탭 등) */
+    .gallery-grid {
+        grid-template-columns: 1fr !important; /* 무조건 한 줄에 하나씩 */
+        gap: 20px;
+    }
 
-            /* 2. Tools 영역: 모바일에서는 3열이 좁으므로 2열로 변경 */
-            .tools-section {
-                width: 100%;
-                max-width: 320px; /* 모바일 폭에 맞춤 */
-            }
+    /* 2. Projects 탭 그리드 최적화 */
+    #projects .gallery-grid {
+        grid-template-columns: 1fr !important;
+    }
+    #projects .gallery-item:nth-child(-n+4),
+    #projects .gallery-item:nth-child(n+5) {
+        grid-column: span 1 !important; /* 모바일에서는 칸 차지 비율 무시 */
+    }
 
-            .tools-list {
-                grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
-                gap: 8px;
-            }
+    /* 3. Modeling 탭 그리드 최적화 */
+    #modeling .gallery-grid {
+        grid-template-columns: 1fr !important;
+    }
 
-            /* 3. Shorts 영역: 가로 나열에서 세로 나열로 변경 (하나씩 크게) */
-            .shorts-grid {
-                flex-direction: column; /* 영상을 위아래로 배치 */
-                align-items: center;
-                gap: 30px;
-            }
+    /* 4. Home 탭: Tools & Shorts 레이아웃 */
+    .tools-shorts-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
 
-            /* 4. 영상 크기: 모바일 화면에서 시원하게 보이도록 조절 */
-            .short-item {
-                width: 85vw;        /* 화면 너비의 85% 차지 */
-                max-width: 320px;   /* 너무 커지는 것 방지 */
-                aspect-ratio: 9 / 16;
-            }
+    .tools-section {
+        width: 100%;
+        max-width: 320px;
+    }
 
-            /* 5. 기타 모바일 폰트 조절 */
-            h1 { font-size: 2.2rem; }
-            .role-text { font-size: 1.1rem; }
-        }
+    .tools-list {
+        grid-template-columns: repeat(2, 1fr); /* 도구 목록 2열 */
+        gap: 8px;
+    }
+
+    .shorts-grid {
+        flex-direction: column; /* 영상 세로 나열 */
+        align-items: center;
+        gap: 30px;
+    }
+
+    .short-item {
+        width: 85vw; /* 화면 너비의 85% */
+        max-width: 320px;
+        aspect-ratio: 9 / 16;
+    }
+
+    /* 5. 텍스트 크기 조절 */
+    h1 { font-size: 2.2rem; }
+    .role-text { font-size: 1.1rem; }
+}
 
 /* --- Projects Tab Custom Layout (12컬럼 시스템) --- */
 #projects .gallery-grid {
