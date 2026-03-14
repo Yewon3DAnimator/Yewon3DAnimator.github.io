@@ -132,18 +132,38 @@
             height: 100%;
         }
 
-        .sub-videos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        /* --- Vertical Shorts Layout --- */
+        .shorts-grid {
+            display: flex;
+            justify-content: center; /* 가운데 정렬 */
+            gap: 40px;               /* 영상 사이 간격 */
+            margin-bottom: 50px;
         }
 
-        .video-item {
-            aspect-ratio: 16 / 9;
-            background: #eee;
+        .short-item {
+            width: 280px;            /* 세로 영상의 너비 (Showreel보다 작게 설정) */
+            aspect-ratio: 9 / 16;    /* 유튜브 숏츠 비율 */
+            background: #000;
             border: 2px solid var(--ink-color);
-            border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        .short-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;       /* 영상을 영역에 꽉 채움 */
+        }
+
+        @media (max-width: 768px) {
+            .shorts-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .short-item {
+                width: 80%;          /* 모바일에서는 화면 너비에 맞춤 */
+            }
         }
 
         /* --- Image Gallery (Other Tabs) --- */
@@ -311,11 +331,14 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/W96v8n6ni30?si=HlRATS5D1108WcMV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
-            <h2>Short Clips</h2>
-            <div class="sub-videos">
-                <div class="video-item"><div style="padding:20px; text-align:center;">Testing</div></div>
-                <div class="video-item"><div style="padding:20px; text-align:center;">Testing</div></div>
-                <div class="video-item"><div style="padding:20px; text-align:center;">Testing</div></div>
+        <h2>Short Clips</h2>
+            <div class="shorts-grid">
+                <div class="short-item">
+                    <video src="Char_Flash.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <div class="short-item">
+                    <video src="Char2_Killer.mp4" autoplay loop muted playsinline></video>
+                </div>
             </div>
         </div>
 
