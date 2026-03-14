@@ -188,32 +188,42 @@
             font-size: 1.1rem;
         }
 
-/* --- Projects Tab Custom Layout --- */
-        #projects .gallery-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
+/* --- Projects Tab Custom Layout (12컬럼 시스템) --- */
+#projects .gallery-grid {
+    /* 2와 3의 공배수인 12컬럼으로 설정 */
+    grid-template-columns: repeat(12, 1fr);
+}
 
-        #projects .gallery-item:nth-child(-n+4) {
-            grid-column: span 2;
-        }
+/* 1번~4번 이미지: 12칸 중 6칸 차지 (한 줄에 2개씩 크게) */
+#projects .gallery-item:nth-child(-n+4) {
+    grid-column: span 6;
+}
 
-        @media (max-width: 900px) {
-            #projects .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            #projects .gallery-item:nth-child(-n+4) {
-                grid-column: span 2;
-            }
-        }
+/* 5번 이후 이미지: 12칸 중 4칸 차지 (한 줄에 3개씩 꽉 차게) */
+#projects .gallery-item:nth-child(n+5) {
+    grid-column: span 4;
+}
 
-        @media (max-width: 600px) {
-            #projects .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            #projects .gallery-item:nth-child(-n+4) {
-                grid-column: span 1;
-            }
-        }
+/* 반응형 설정: 화면이 좁아질 때 */
+@media (max-width: 900px) {
+    #projects .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
+    }
+    #projects .gallery-item:nth-child(-n+4),
+    #projects .gallery-item:nth-child(n+5) {
+        grid-column: span 2; /* 모든 이미지를 한 줄에 하나씩 크게 */
+    }
+}
+
+@media (max-width: 600px) {
+    #projects .gallery-grid {
+        grid-template-columns: 1fr; /* 1열로 변경 */
+    }
+    #projects .gallery-item:nth-child(-n+4),
+    #projects .gallery-item:nth-child(n+5) {
+        grid-column: span 1;
+    }
+}
         
         /* --- Footer --- */
         footer {
@@ -301,31 +311,31 @@
             <div class="gallery-grid">
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_storyboard1.jpg" alt="Twins Character">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">Twins Character</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_storyboard2.jpg" alt="Twins Storyboard">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">Twins Storyboard</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_characterdesign4.jpg" alt="The old Beacon and Cannon">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">The old Beacon and Cannon</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_characterdesign5.jpg" alt="The old Beacon and Cannon">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">The old Beacon and Cannon</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_characterdesign1.jpg" alt="Graffitaser_Sim Chaea">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">Graffitaser_Sim Chaea</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_characterdesign2.jpg" alt="Graffitaser_Image Board">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">Graffitaser_Image Board</div>
                 </div>
                  <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_characterdesign3.jpg" alt="Graffitaser_Story">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">Graffitaser_Story</div>
                 </div>
             </div>
         </div>
@@ -336,7 +346,7 @@
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_kpophunters.jpg" alt="Draw1">
-                    <div class="caption">Fan Art</div>
+                    <div class="caption">KpopDemonHunters_Fan Art</div>
                 </div>
                 <div class="gallery-item" onclick="viewImage(this)">
                     <img src="yewon_sportsposter.jpg" alt="Draw2">
