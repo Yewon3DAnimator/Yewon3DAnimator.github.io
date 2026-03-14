@@ -149,15 +149,24 @@
         }
 
         .tools-section ul {
-            list-style: none; /* 목록 스타일(점) 제거 */
+            list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;       /* 가로로 나열 */
+            flex-wrap: wrap;    /* 공간 부족 시 다음 줄로 */
+            gap: 10px 25px;     /* 상하 10px, 좌우 25px 간격 */
         }
 
         .tools-section li {
-            font-size: 1.4rem; /* 도구 이름 크기 */
-            margin-bottom: 10px; /* 도구 간격 */
-            color: var(--ink-color);
+            /* 깔끔한 고딕체(무료 폰트) 적용 */
+            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #444;
+            background: #f0f0f0; /* 배경을 넣어 탭(Tag) 느낌 강조 */
+            padding: 5px 12px;
+            border-radius: 5px;
+            white-space: nowrap; /* 툴 이름이 중간에 끊기지 않게 함 */
         }
 
         .shorts-grid-shifted {
@@ -342,14 +351,21 @@
 
         <div class="tools-shorts-container">
                 <div class="tools-section">
-                    <h2>Tools</h2>
-                    <ul>
-                        <li>Maya   Zbrush   Blender</li>
-                        <li>Substance Painter   Unreal Engine   Nuke</li>
-                        <li>Photoshop   Clip Studio Paint   Illustrator</li>
-                        <li>Premiere Pro   After Effects</li>
-                    </ul>
-                </div>
+                <h2>Tools</h2>
+                <ul class="tools-list">
+                    <li>Maya</li>
+                    <li>Zbrush</li>
+                    <li>Blender</li>
+                    <li>Substance Painter</li>
+                    <li>Unreal Engine</li>
+                    <li>Nuke</li>
+                    <li>Photoshop</li>
+                    <li>Clip Studio Paint</li>
+                    <li>Illustrator</li>
+                    <li>Premiere Pro</li>
+                    <li>After Effects</li>
+                </ul>
+            </div>
 
                 <div class="shorts-grid-shifted">
                     <h2>Short Clips</h2>
