@@ -9,355 +9,144 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
 
-    <style>
+<style>
         :root {
-            --bg-color: #fcfcfc; /* 종이 질감 같은 미색 */
-            --ink-color: #2c2c2c; /* 연필심 색 */
+            --bg-color: #fcfcfc;
+            --ink-color: #2c2c2c;
             --accent-color: #e0e0e0;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Gamja Flower', cursive; /* 손글씨 폰트 적용 */
+            margin: 0; padding: 0;
+            font-family: 'Gamja Flower', cursive;
             background-color: var(--bg-color);
             color: var(--ink-color);
             font-size: 1.2rem;
         }
 
         /* --- Header & Nav --- */
-        header {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .role-text {
-            font-size: 1.5rem;
-            opacity: 0.8;
-            margin-bottom: 30px;
-        }
-
+        header { text-align: center; padding: 40px 20px; }
+        h1 { font-size: 3rem; margin-bottom: 10px; letter-spacing: 2px; }
+        .role-text { font-size: 1.5rem; opacity: 0.8; margin-bottom: 30px; }
         nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-            position: sticky;
-            top: 0;
-            background: var(--bg-color);
-            padding: 15px;
-            z-index: 100;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
+            margin-bottom: 40px; position: sticky; top: 0;
+            background: var(--bg-color); padding: 15px; z-index: 100;
             border-bottom: 2px dashed #ddd;
         }
 
-        /* 낙서 느낌의 버튼 스타일 */
         .tab-btn {
-            background: none;
-            border: 2px solid var(--ink-color);
+            background: none; border: 2px solid var(--ink-color);
             border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
-            padding: 10px 25px;
-            font-family: 'Gamja Flower', cursive;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            padding: 10px 25px; font-family: 'Gamja Flower', cursive;
+            font-size: 1.3rem; cursor: pointer; transition: all 0.2s ease;
         }
-
-        .tab-btn:hover {
-            transform: rotate(-2deg) scale(1.05);
-            background-color: var(--ink-color);
-            color: white;
-        }
-
-        .tab-btn.active {
-            background-color: var(--ink-color);
-            color: white;
-            border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px; 
-            transform: rotate(1deg);
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--ink-color); color: white; transform: rotate(-1deg);
         }
 
         /* --- Main Content --- */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 60vh;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
+        main { max-width: 1200px; margin: 0 auto; padding: 20px; min-height: 60vh; }
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- Video Section (Home) --- */
-        .video-container {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
+        /* --- Home Tab Styles --- */
         .main-reel {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #eee;
+            width: 100%; aspect-ratio: 16 / 9; background: #eee;
             border: 3px solid var(--ink-color);
             border-radius: 2px 255px 3px 25px / 255px 5px 225px 5px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
+            overflow: hidden; margin-bottom: 30px;
         }
-        
-        .main-reel iframe {
-            width: 100%;
-            height: 100%;
-        }
+        .main-reel iframe { width: 100%; height: 100%; border: none; }
 
-        /* --- Tools & Shorts 정렬 수정 --- */
         .tools-shorts-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 40px;               /* 도구와 영상 사이 간격 */
-            margin-top: 40px;
-            margin-bottom: 50px;
+            display: flex; justify-content: center; align-items: flex-start;
+            gap: 40px; margin-top: 40px; margin-bottom: 50px;
         }
-
-        .tools-section {
-            width: 380px;            /* 3개씩 넣기 위해 가로 폭을 충분히 확보 */
-        }
-
-        .tools-section h2 {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
+        .tools-section { width: 380px; }
         .tools-list {
-            list-style: none;
-            padding: 0;
-            display: grid;           /* 3열 배치를 위한 Grid 적용 */
-            grid-template-columns: repeat(3, 1fr); /* 정확히 3열로 나눔 */
-            gap: 10px;               /* 박스들 사이의 간격 */
+            list-style: none; padding: 0; display: grid;
+            grid-template-columns: repeat(3, 1fr); gap: 10px;
         }
-
         .tools-list li {
-            /* 상업적 무료 고딕체 적용 */
-            font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            background: #f0f0f0;
-            padding: 10px 5px;
-            border-radius: 6px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            word-break: keep-all;    /* 단어가 중간에 잘리지 않게 함 */
-            min-height: 45px;       /* 모든 박스의 높이를 통일 */
+            font-family: 'Pretendard', sans-serif; font-size: 0.9rem;
+            background: #f0f0f0; padding: 10px 5px; border-radius: 6px;
+            text-align: center; min-height: 45px; display: flex;
+            align-items: center; justify-content: center;
         }
 
-        /* 오른쪽 영상 영역 */
-        .shorts-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .shorts-grid {
-            display: flex;          /* 영상들을 가로로 나열 */
-            gap: 20px;              /* 영상 사이 간격 */
-        }
-
+        .shorts-section { display: flex; flex-direction: column; align-items: center; }
+        .shorts-grid { display: flex; gap: 20px; }
         .short-item {
-            width: 350px;           /* 2번 사진 정도의 적당한 크기 */
-            aspect-ratio: 9 / 16;
-            background: #000;
-            border: 2px solid var(--ink-color);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            width: 250px; aspect-ratio: 9 / 16; background: #000;
+            border: 2px solid var(--ink-color); border-radius: 12px; overflow: hidden;
         }
+        .short-item video { width: 100%; height: 100%; object-fit: cover; }
 
-        .short-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* 모바일 대응 */
-        /* --- 모바일 통합 반응형 레이아웃 (768px 이하) --- */
-@media (max-width: 768px) {
-    /* 1. 공통 갤러리 그리드 (Drawing, Figure 탭 등) */
-    .gallery-grid {
-        grid-template-columns: 1fr !important; /* 무조건 한 줄에 하나씩 */
-        gap: 20px;
-    }
-
-    /* 2. Projects 탭 그리드 최적화 */
-    #projects .gallery-grid {
-        grid-template-columns: 1fr !important;
-    }
-    #projects .gallery-item:nth-child(-n+4),
-    #projects .gallery-item:nth-child(n+5) {
-        grid-column: span 1 !important; /* 모바일에서는 칸 차지 비율 무시 */
-    }
-
-    /* 3. Modeling 탭 그리드 최적화 */
-    #modeling .gallery-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* 4. Home 탭: Tools & Shorts 레이아웃 */
-    .tools-shorts-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .tools-section {
-        width: 100%;
-        max-width: 320px;
-    }
-
-    .tools-list {
-        grid-template-columns: repeat(2, 1fr); /* 도구 목록 2열 */
-        gap: 8px;
-    }
-
-    .shorts-grid {
-        flex-direction: column; /* 영상 세로 나열 */
-        align-items: center;
-        gap: 30px;
-    }
-
-    .short-item {
-        width: 85vw; /* 화면 너비의 85% */
-        max-width: 320px;
-        aspect-ratio: 9 / 16;
-    }
-
-    /* 5. 텍스트 크기 조절 */
-    h1 { font-size: 2.2rem; }
-    .role-text { font-size: 1.1rem; }
-}
-
-/* --- Projects Tab Custom Layout (12컬럼 시스템) --- */
-#projects .gallery-grid {
-    /* 2와 3의 공배수인 12컬럼으로 설정 */
-    grid-template-columns: repeat(12, 1fr);
-}
-
-/* 1번~4번 이미지: 12칸 중 6칸 차지 (한 줄에 2개씩 크게) */
-#projects .gallery-item:nth-child(-n+4) {
-    grid-column: span 6;
-}
-
-/* 5번 이후 이미지: 12칸 중 4칸 차지 (한 줄에 3개씩 꽉 차게) */
-#projects .gallery-item:nth-child(n+5) {
-    grid-column: span 4;
-}
-
-/* 반응형 설정: 화면이 좁아질 때 */
-@media (max-width: 900px) {
-    #projects .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2열로 변경 */
-    }
-    #projects .gallery-item:nth-child(-n+4),
-    #projects .gallery-item:nth-child(n+5) {
-        grid-column: span 2; /* 모든 이미지를 한 줄에 하나씩 크게 */
-    }
-}
-
-@media (max-width: 600px) {
-    #projects .gallery-grid {
-        grid-template-columns: 1fr; /* 1열로 변경 */
-    }
-    #projects .gallery-item:nth-child(-n+4),
-    #projects .gallery-item:nth-child(n+5) {
-        grid-column: span 1;
-    }
-}
-
-/* --- Modeling Tab Custom Layout --- */
-/* Modeling 탭의 그리드를 2열로 고정 */
-#modeling .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px; /* 이미지가 커지므로 가독성을 위해 간격을 조금 넓혔습니다 */
-}
-
-/* 태블릿 및 모바일 대응 */
-@media (max-width: 768px) {
-    #modeling .gallery-grid {
-        grid-template-columns: 1fr; /* 화면이 좁아지면 한 줄에 1개씩 표시 */
-    }
-}
+        /* --- Gallery Grids (Projects, Drawing, Modeling, Figure) --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; }
         
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            margin-top: 50px;
-            border-top: 2px dashed #ddd; /* 점선 유지 */
-            color: #666;
-        }
+        /* Projects: Desktop 12-col */
+        #projects .gallery-grid { grid-template-columns: repeat(12, 1fr); }
+        #projects .gallery-item:nth-child(-n+4) { grid-column: span 6; }
+        #projects .gallery-item:nth-child(n+5) { grid-column: span 4; }
 
-        /* 이메일 스타일 수정 */
-        .footer-email {
-            font-size: 25px; /* 12pt에 해당 */
-            font-weight: 700; /* 굵게 */
-            color: var(--ink-color);
-            margin-bottom: 10px;
-            text-decoration: none;
-            display: block;
-        }
+        /* Modeling: Desktop 2-col */
+        #modeling .gallery-grid { grid-template-columns: repeat(2, 1fr); }
 
-        .footer-copy {
-            font-size: 1rem;
-            opacity: 0.7;
+        .gallery-item {
+            background: white; padding: 10px; border: 2px solid var(--ink-color);
+            border-radius: 5px 255px 3px 25px / 225px 5px 255px 10px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1); transition: transform 0.3s; cursor: zoom-in;
         }
+        .gallery-item:hover { transform: translateY(-5px) rotate(1deg); }
+        .gallery-item img { width: 100%; height: auto; border-radius: 2px; }
+        .caption { margin-top: 10px; text-align: center; font-size: 1.1rem; }
 
-        /* --- Lightbox (Image Viewer) --- */
+        /* --- Footer & Lightbox --- */
+        footer { text-align: center; padding: 50px 20px; border-top: 2px dashed #ddd; }
+        .footer-email { font-size: 25px; font-weight: 700; color: var(--ink-color); text-decoration: none; display: block; }
         #lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            cursor: zoom-out;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.95); display: none;
+            align-items: center; justify-content: center; z-index: 1000;
         }
-        
-        #lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border: 5px solid var(--ink-color);
-            border-radius: 2px 255px 3px 25px / 255px 5px 225px 5px;
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
-        }
+        #lightbox img { max-width: 90%; max-height: 90%; border: 5px solid var(--ink-color); }
 
+        /* ==========================================
+           최종 통합 모바일 반응형 (768px 이하)
+           ========================================== */
+        @media (max-width: 768px) {
+            /* 1. 홈 탭 최적화 */
+            .tools-shorts-container { flex-direction: column; align-items: center; }
+            .tools-section { width: 100%; max-width: 320px; }
+            .tools-list { grid-template-columns: repeat(2, 1fr); }
+            .shorts-grid { flex-direction: column; }
+            .short-item { width: 85vw; max-width: 300px; }
+
+            /* 2. 모든 갤러리 탭 (Projects, Modeling 포함) 1열로 강제 고정 */
+            .gallery-grid, 
+            #projects .gallery-grid, 
+            #modeling .gallery-grid { 
+                grid-template-columns: 1fr !important; 
+            }
+            
+            /* Projects 특수 칸 차지 무효화 */
+            #projects .gallery-item:nth-child(-n+4),
+            #projects .gallery-item:nth-child(n+5) { 
+                grid-column: span 1 !important; 
+            }
+
+            h1 { font-size: 2.2rem; }
+            nav { gap: 8px; }
+            .tab-btn { padding: 8px 15px; font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
