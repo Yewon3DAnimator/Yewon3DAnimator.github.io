@@ -204,55 +204,42 @@
         }
 
         /* 모바일 대응 */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
+            /* 1. 전체 컨테이너를 세로 정렬로 변경 */
             .tools-shorts-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 40px;
             }
+
+            /* 2. Tools 영역: 모바일에서는 3열이 좁으므로 2열로 변경 */
+            .tools-section {
+                width: 100%;
+                max-width: 320px; /* 모바일 폭에 맞춤 */
+            }
+
+            .tools-list {
+                grid-template-columns: repeat(2, 1fr); /* 2열 배치 */
+                gap: 8px;
+            }
+
+            /* 3. Shorts 영역: 가로 나열에서 세로 나열로 변경 (하나씩 크게) */
             .shorts-grid {
-                justify-content: center;
+                flex-direction: column; /* 영상을 위아래로 배치 */
+                align-items: center;
+                gap: 30px;
             }
-        }
-        /* --- Image Gallery (Other Tabs) --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
 
-        .gallery-item {
-            position: relative;
-            background: white;
-            padding: 10px;
-            border: 2px solid var(--ink-color);
-            border-radius: 5px 255px 3px 25px / 225px 5px 255px 10px;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            cursor: zoom-in;
-        }
+            /* 4. 영상 크기: 모바일 화면에서 시원하게 보이도록 조절 */
+            .short-item {
+                width: 85vw;        /* 화면 너비의 85% 차지 */
+                max-width: 320px;   /* 너무 커지는 것 방지 */
+                aspect-ratio: 9 / 16;
+            }
 
-        .gallery-item:hover {
-            transform: translateY(-5px) rotate(1deg);
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 2px;
-            filter: grayscale(20%);
-            transition: filter 0.3s;
-        }
-
-        .gallery-item:hover img {
-            filter: grayscale(0%);
-        }
-
-        .caption {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 1.1rem;
+            /* 5. 기타 모바일 폰트 조절 */
+            h1 { font-size: 2.2rem; }
+            .role-text { font-size: 1.1rem; }
         }
 
 /* --- Projects Tab Custom Layout (12컬럼 시스템) --- */
