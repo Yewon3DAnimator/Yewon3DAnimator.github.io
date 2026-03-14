@@ -132,37 +132,46 @@
             height: 100%;
         }
 
-        /* --- Vertical Shorts Layout --- */
-        .shorts-grid {
-            display: flex;
-            justify-content: center; /* 가운데 정렬 */
-            gap: 40px;               /* 영상 사이 간격 */
+        /* --- Tools and Shorts Layout --- */
+        .tools-shorts-container {
+            display: grid;
+            grid-template-columns: 2fr 3fr; /* 도구 영역과 동영상 영역의 너비 비율 설정 */
+            gap: 40px; /* 두 영역 사이의 간격 */
             margin-bottom: 50px;
         }
 
-        .short-item {
-            width: 280px;            /* 세로 영상의 너비 (Showreel보다 작게 설정) */
-            aspect-ratio: 9 / 16;    /* 유튜브 숏츠 비율 */
-            background: #000;
-            border: 2px solid var(--ink-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        .tools-section {
+            padding-right: 20px; /* 도구 목록과 동영상 사이 여백 */
         }
 
-        .short-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;       /* 영상을 영역에 꽉 채움 */
+        .tools-section h2 {
+            margin-bottom: 20px;
         }
 
-        @media (max-width: 768px) {
-            .shorts-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-            .short-item {
-                width: 80%;          /* 모바일에서는 화면 너비에 맞춤 */
+        .tools-section ul {
+            list-style: none; /* 목록 스타일(점) 제거 */
+            padding: 0;
+            margin: 0;
+        }
+
+        .tools-section li {
+            font-size: 1.4rem; /* 도구 이름 크기 */
+            margin-bottom: 10px; /* 도구 간격 */
+            color: var(--ink-color);
+        }
+
+        .shorts-grid-shifted {
+            display: flex;
+            flex-direction: column; /* 세로로 배치 */
+            align-items: center; /* 가운데 정렬 */
+            gap: 20px; /* 영상 간격 */
+        }
+
+        /* 좁은 화면 (태블릿, 모바일) 대응 */
+        @media (max-width: 900px) {
+            .tools-shorts-container {
+                grid-template-columns: 1fr; /* 세로로 한 줄씩 배치 */
+                gap: 20px;
             }
         }
 
@@ -331,13 +340,25 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/W96v8n6ni30?si=HlRATS5D1108WcMV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
 
-        <h2>Short Clips</h2>
-            <div class="shorts-grid">
-                <div class="short-item">
-                    <video src="Char_Flash.mp4" autoplay loop muted playsinline></video>
+        <div class="tools-shorts-container">
+                <div class="tools-section">
+                    <h2>Tools</h2>
+                    <ul>
+                        <li>Maya   Zbrush   Blender</li>
+                        <li>Substance Painter   Unreal Engine   Nuke</li>
+                        <li>Photoshop   Clip Studio Paint   Illustrator</li>
+                        <li>Premiere Pro   After Effects</li>
+                    </ul>
                 </div>
-                <div class="short-item">
-                    <video src="Char2_Killer.mp4" autoplay loop muted playsinline></video>
+
+                <div class="shorts-grid-shifted">
+                    <h2>Short Clips</h2>
+                    <div class="short-item">
+                        <video src="clip1.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                    <div class="short-item">
+                        <video src="clip2.mp4" autoplay loop muted playsinline></video>
+                    </div>
                 </div>
             </div>
         </div>
